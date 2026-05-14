@@ -4,7 +4,7 @@ import { ProductCardProps } from './ProductCard.props';
 
 function ProductCard(props: ProductCardProps) {
 	return (
-		<Link to={'/'} className={styles['link']}>
+		<Link to={`/product/${props.id}`} className={styles['link']}>
 			<div className={styles['card']}>
 				<div
 					className={styles['head']}
@@ -26,7 +26,6 @@ function ProductCard(props: ProductCardProps) {
 					<div className={styles['title']}>{props.name}</div>
 					<div className={styles['description']}>{props.description}</div>
 				</div>
-				<Link to={`/product/${props.id}`}></Link>
 			</div>
 		</Link>
 	);

@@ -1,9 +1,17 @@
-import { useParams } from 'react-router-dom';
+import { Suspense } from 'react';
+import { Await, useLoaderData } from 'react-router-dom';
+import { Product as ProductType } from '../../interfaces/product.interface';
 
 export function Product() {
-	const { id } = useParams();
+	const { data } = useLoaderData() as { data: Promise<ProductType> };
 
-	return <>
-		Product - {id}
-	</>;
+	return (
+		<Suspense fallback={'Загружаю...'}>
+			<Await resolve={data}>
+				{(product: ProductType) => ( // Await передаёт resolved-значение напрямую, не оборачивая
+					<>Product - {product.name}</>
+				)}
+			</Await>
+		</Suspense>
+	);
 }
